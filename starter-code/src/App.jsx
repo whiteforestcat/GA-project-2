@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRef } from "react";
+import Animals from "./components/Animals";
 
 function App() {
   const userInputRef = useRef()
@@ -40,6 +41,9 @@ function App() {
       <img src={image} />
       <br />
       {storeInput && <button>Add to Favourites</button>}
+
+
+      <Animals/>
     </>
   );
 }
