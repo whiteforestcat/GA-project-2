@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useRef } from "react";
 import Animals from "./components/Animals";
+import Furniture from "./components/Furniture";
+import Flowers from "./components/Flowers";
 
 function App() {
-  const userInputRef = useRef()
+  const userInputRef = useRef();
   const [storeInput, setStoreInput] = useState("");
   const [image, setImage] = useState("");
 
   const handleClick = () => {
     setStoreInput(userInputRef.current.value);
-    userInputRef.current.value = ""
+    userInputRef.current.value = "";
   };
 
   const getData = () => {
@@ -42,8 +44,9 @@ function App() {
       <br />
       {storeInput && <button>Add to Favourites</button>}
 
-
-      <Animals/>
+      <Animals />
+      <Furniture />
+      <Flowers />
     </>
   );
 }
