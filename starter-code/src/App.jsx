@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { useRef } from "react";
 
 function App() {
-  const [userInput, setUserInput] = useState("");
+  const userInputRef = useRef()
   const [storeInput, setStoreInput] = useState("");
   const [image, setImage] = useState("");
 
-  const handleChange = (e) => {
-    setUserInput(e.target.value);
-  };
-
   const handleClick = () => {
-    setStoreInput(userInput);
-    setUserInput("");
+    setStoreInput(userInputRef.current.value);
+    userInputRef.current.value = ""
   };
 
   const getData = () => {
-    if (userInput) {
+    if (storeInput) {
       const url =
         "https://pixabay.com/api/?key=32915227-7fee22a435d92b06b1ec8ed8f&q=" +
-        userInput + // why cannot storeInput
+        storeInput + // why cannot storeInput
         "&image_type=photo";
       fetch(url)
         .then((response) => response.json())
@@ -32,17 +29,12 @@ function App() {
 
   useEffect(() => {
     getData();
-  }, [userInput]);
+  }, [storeInput]);
 
   return (
     <>
       <label htmlFor="user-input">Input</label>
-      <input
-        type="text"
-        value={userInput}
-        id="user-input"
-        onChange={handleChange}
-      />
+      <input type="text" ref={userInputRef} id="user-input" />
       <button onClick={handleClick}>Enter</button>
       <br />
       <img src={image} />
