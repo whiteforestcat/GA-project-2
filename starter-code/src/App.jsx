@@ -6,11 +6,16 @@ import Flowers from "./components/Flowers";
 import SomeContext from "./context/some-context";
 import Favourites from "./components/Favourites";
 
+// Importing React routers
+import { Route, Routes, Navigate } from "react-router-dom";
+import HomePage from "./Pages/HomePage";
+import FavouritesPage from "./pages/FavouritesPage";
+
 function App() {
   const userInputRef = useRef();
   const [storeInput, setStoreInput] = useState("");
   const [image, setImage] = useState("");
-  const [favourites, setFavourites] = useState([])
+  const [favourites, setFavourites] = useState([]);
 
   const handleClick = () => {
     setStoreInput(userInputRef.current.value);
@@ -52,9 +57,9 @@ function App() {
         <Furniture />
         <Flowers />
 
-        {false && <Favourites/>}
-
+        {false && <Favourites />}
       </SomeContext.Provider>
+
     </>
   );
 }
