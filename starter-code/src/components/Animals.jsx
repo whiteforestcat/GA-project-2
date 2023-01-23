@@ -43,12 +43,14 @@ const Animals = () => {
       {/* {stateArray.map((element) => {
         <img src={element} />;
       })} */}
-      <img src={image[0]} />
-      <Button
-        favourites={ctx.favourites}
-        setFavourites={ctx.setFavourites}
-        image={image[0]}
-      />
+      <div>
+        <img src={image[0]} />
+        <Button
+          favourites={ctx.favourites}
+          setFavourites={ctx.setFavourites}
+          image={image[0]}
+        />
+      </div>
       <img src={image[1]} />
       <img src={image[2]} />
       <img src={image[3]} />

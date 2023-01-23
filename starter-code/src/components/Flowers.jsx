@@ -1,9 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import useFetch from "../hooks/useFetch";
+import SomeContext from "../context/some-context";
+import Button from "./Button";
 
 const Flowers = () => {
-  const [state, setState] = useState("");
+
+  const ctx = useContext(SomeContext)
+
+  const [image, setImage] = useState("");
   const [store, setStore] = useState([]);
 
   const generateData = () => {
@@ -17,8 +22,8 @@ const Flowers = () => {
         // console.log(output);
 
         //   setState(output.hits[0].previewURL);
-        setState([
-          ...state,
+        setImage([
+          ...image,
           output.hits[0].previewURL,
           output.hits[1].previewURL,
           output.hits[2].previewURL,
@@ -33,7 +38,6 @@ const Flowers = () => {
     generateData();
   }, []);
 
-  const stateArray = [...state];
 
   return (
     <>
@@ -41,12 +45,19 @@ const Flowers = () => {
       {/* {stateArray.map((element) => {
         <img src={element} />;
       })} */}
-      <img src={stateArray[0]} />
-      <img src={stateArray[1]} />
-      <img src={stateArray[2]} />
-      <img src={stateArray[3]} />
-      <img src={stateArray[4]} />
-      <img src={stateArray[5]} />
+      <div>
+        <img src={image[0]} />
+        <Button
+          favourites={ctx.favourites}
+          setFavourites={ctx.setFavourites}
+          image={image[0]}
+        />
+      </div>
+      <img src={image[1]} />
+      <img src={image[2]} />
+      <img src={image[3]} />
+      <img src={image[4]} />
+      <img src={image[5]} />
     </>
   );
 };
