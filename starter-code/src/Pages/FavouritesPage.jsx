@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import SomeContext from '../context/some-context';
 
 const FavouritesPage = () => {
+
+    const ctx = useContext(SomeContext)
+
     return (
-        <div>
-            
-        </div>
+        <>
+            <img src={ctx.favourites} />
+        </>
     );
 };
 

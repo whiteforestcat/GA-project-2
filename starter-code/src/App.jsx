@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useRef } from "react";
-import Animals from "./components/Animals";
-import Furniture from "./components/Furniture";
-import Flowers from "./components/Flowers";
 import SomeContext from "./context/some-context";
 import Favourites from "./components/Favourites";
 
 // Importing React routers
-import { Route, Routes, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import HomePage from "./Pages/HomePage";
-import FavouritesPage from "./pages/FavouritesPage";
+import FavouritesPage from "./Pages/FavouritesPage";
+import AnimalsPage from "./Pages/AnimalsPage";
+import FurniturePage from "./Pages/FurniturePage";
+import FlowersPage from "./Pages/FlowersPage";
 
 function App() {
   const userInputRef = useRef();
@@ -38,29 +43,39 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    getData();
-  }, [storeInput]);
-
   return (
-    <>
+    <Router>
       <SomeContext.Provider value={{ favourites, setFavourites }}>
-        <label htmlFor="user-input">Input</label>
-        <input type="text" ref={userInputRef} id="user-input" />
-        <button onClick={handleClick}>Enter</button>
-        <br />
-        <img src={image} />
-        <br />
-        {storeInput && <button>Add to Favourites</button>}
-
-        <Animals />
-        <Furniture />
-        <Flowers />
-
         {false && <Favourites />}
-      </SomeContext.Provider>
+        <Favourites />
+        {/* // if i refresh page, favourites data is gone, how to store in memory? */}
 
-    </>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                userInputRef={userInputRef}
+                storeInput={storeInput}
+                setStoreInput={setStoreInput}
+                image={image}
+                setImage={setImage}
+                handleClick={handleClick}
+                getData={getData}
+              />
+            }
+          />
+          <Route
+            path="/animals"
+            element={<AnimalsPage />}
+          />
+          {/* // why <Animals/> component can still access useContext? */}
+          <Route path="/favourites" element={<FavouritesPage />} />
+          <Route path="/furniture" element={<FurniturePage />} />
+          <Route path="/flowers" element={<FlowersPage />} />
+        </Routes>
+      </SomeContext.Provider>
+    </Router>
   );
 }
 
