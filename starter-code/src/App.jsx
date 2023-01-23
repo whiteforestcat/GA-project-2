@@ -4,6 +4,7 @@ import Animals from "./components/Animals";
 import Furniture from "./components/Furniture";
 import Flowers from "./components/Flowers";
 import SomeContext from "./context/some-context";
+import Favourites from "./components/Favourites";
 
 function App() {
   const userInputRef = useRef();
@@ -50,6 +51,8 @@ function App() {
         <Animals />
         <Furniture />
         <Flowers />
+
+        {false && <Favourites/>}
 
       </SomeContext.Provider>
     </>

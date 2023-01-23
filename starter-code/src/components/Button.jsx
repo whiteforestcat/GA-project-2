@@ -11,7 +11,7 @@ const Button = (props) => {
     return (
         <>
             <button onClick={handleClick}>Add to Favourites</button>
-            <img src={props.favourites} />
+
         </>
     );
 };
