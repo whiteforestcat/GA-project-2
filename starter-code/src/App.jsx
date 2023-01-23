@@ -3,11 +3,13 @@ import { useRef } from "react";
 import Animals from "./components/Animals";
 import Furniture from "./components/Furniture";
 import Flowers from "./components/Flowers";
+import SomeContext from "./context/some-context";
 
 function App() {
   const userInputRef = useRef();
   const [storeInput, setStoreInput] = useState("");
   const [image, setImage] = useState("");
+  const [favourites, setFavourites] = useState([])
 
   const handleClick = () => {
     setStoreInput(userInputRef.current.value);
@@ -36,17 +38,20 @@ function App() {
 
   return (
     <>
-      <label htmlFor="user-input">Input</label>
-      <input type="text" ref={userInputRef} id="user-input" />
-      <button onClick={handleClick}>Enter</button>
-      <br />
-      <img src={image} />
-      <br />
-      {storeInput && <button>Add to Favourites</button>}
+      <SomeContext.Provider value={{ favourites, setFavourites }}>
+        <label htmlFor="user-input">Input</label>
+        <input type="text" ref={userInputRef} id="user-input" />
+        <button onClick={handleClick}>Enter</button>
+        <br />
+        <img src={image} />
+        <br />
+        {storeInput && <button>Add to Favourites</button>}
 
-      <Animals />
-      <Furniture />
-      <Flowers />
+        <Animals />
+        <Furniture />
+        <Flowers />
+
+      </SomeContext.Provider>
     </>
   );
 }
