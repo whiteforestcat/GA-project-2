@@ -5,6 +5,21 @@ import styles from "./ImageModal.module.css";
 // create Overlay Component here
 
 const Overlay = (props) => {
+//   const modalSelector = (modalImage) => {
+//     switch (modalImage) {
+//       case "largeImage[0]":
+//         return <img src={props.image} />;
+
+
+//       case "largeImage[1]":
+//         return <img src={props.image} />;
+
+//       default:
+//         return <h2>weee</h2>
+//         break;
+//     }
+//   };
+
   return (
     <div className={styles.backdrop} onClick={props.triggerPopUp}>
       <div className={`${styles.board} ${styles.modal}`}>
@@ -13,6 +28,7 @@ const Overlay = (props) => {
           style={{ width: "50%" }}
           //   onClick={props.triggerPopUp}
         />
+        {/* {modalSelector(props.image)} */}
         {/* {window.addEventListener("click", props.triggerPopUp)} */}
       </div>
     </div>

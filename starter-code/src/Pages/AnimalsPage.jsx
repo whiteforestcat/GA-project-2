@@ -1,11 +1,15 @@
 import React from 'react';
 import Animals from '../components/Animals';
 
-const AnimalsPage = () => {
+const AnimalsPage = (props) => {
     return (
-        <>
-            <Animals />
-        </>
+      <>
+        <Animals
+          popUp={props.popUp}
+          setPopUp={props.setPopUp}
+          triggerPopUp={props.triggerPopUp}
+        />
+      </>
     );
 };
 

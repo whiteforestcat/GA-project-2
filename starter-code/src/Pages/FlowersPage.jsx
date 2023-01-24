@@ -1,10 +1,14 @@
 import React from "react";
 import Flowers from "../components/Flowers";
 
-const FlowersPage = () => {
+const FlowersPage = (props) => {
   return (
     <>
-      <Flowers />
+      <Flowers
+        popUp={props.popUp}
+        setPopUp={props.setPopUp}
+        triggerPopUp={props.triggerPopUp}
+      />
     </>
   );
 };

@@ -1,10 +1,14 @@
 import React from "react";
 import Furniture from "../components/Furniture";
 
-const FurniturePage = () => {
+const FurniturePage = (props) => {
   return (
     <>
-      <Furniture />
+      <Furniture
+        popUp={props.popUp}
+        setPopUp={props.setPopUp}
+        triggerPopUp={props.triggerPopUp}
+      />
     </>
   );
 };

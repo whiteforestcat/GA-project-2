@@ -5,11 +5,10 @@ import Button from "./Button";
 import SomeContext from "../context/some-context";
 import ImageModal from "../modals/ImageModal";
 
-const Animals = () => {
+const Animals = (props) => {
   const [image, setImage] = useState([]);
   const [largeImage, setLargeImage] = useState([]);
   const [store, setStore] = useState([]);
-  const [popUp, setPopUp] = useState(false);
 
   const ctx = useContext(SomeContext);
 
@@ -26,12 +25,12 @@ const Animals = () => {
         //   setState(output.hits[0].previewURL);
         setImage([
           ...image,
-          output.hits[0].previewURL,
-          output.hits[1].previewURL,
-          output.hits[2].previewURL,
-          output.hits[3].previewURL,
-          output.hits[4].previewURL,
-          output.hits[5].previewURL,
+          output.hits[0].largeImageURL,
+          output.hits[1].largeImageURL,
+          output.hits[2].largeImageURL,
+          output.hits[3].largeImageURL,
+          output.hits[4].largeImageURL,
+          output.hits[5].largeImageURL,
         ]);
 
         setLargeImage([
@@ -50,44 +49,45 @@ const Animals = () => {
     generateData();
   }, []);
 
-  const triggerPopUp = () => {
-    setPopUp(!popUp);
-  };
+
+  const enlarge = (source) => {
+    setStore(source)
+    props.setPopUp(!props.popUp)
+  } 
 
   return (
-    <>
+    <div className="gallery">
       <h2>Animals</h2>
       {/* {stateArray.map((element) => {
         <img src={element} />;
       })} */}
-      <div>
-        <img src={image[0]} onClick={triggerPopUp} />
-        <Button
-          favourites={ctx.favourites}
-          setFavourites={ctx.setFavourites}
-          image={image[0]}
-        />
-        {popUp && (
-          <ImageModal image={largeImage[0]} triggerPopUp={triggerPopUp} />
-        )}
+
+      <div className={props.popUp ? "model open" : "model"}>
+        <img src={store} onClick={() => props.setPopUp(false)} />
       </div>
-      <div>
-        <img src={image[1]} onClick={triggerPopUp} />
-        <Button
-          favourites={ctx.favourites}
-          setFavourites={ctx.setFavourites}
-          image={image[1]}
-        />
-        {popUp && (
-          <ImageModal image={largeImage[2]} triggerPopUp={triggerPopUp} />
-        )}
-      </div>
-      <img src={image[1]} />
-      <img src={image[2]} />
-      <img src={image[3]} />
-      <img src={image[4]} />
-      <img src={image[5]} />
-    </>
+
+      <img src={image[0]} onClick={() => enlarge(image[0])} />
+      <Button
+        favourites={ctx.favourites}
+        setFavourites={ctx.setFavourites}
+        image={image[0]}
+      />
+
+      <img src={image[1]} onClick={() => enlarge(image[1])} />
+      <Button
+        favourites={ctx.favourites}
+        setFavourites={ctx.setFavourites}
+        image={image[1]}
+      />
+
+      <img src={image[2]} onClick={() => enlarge(image[2])} />
+      <img src={image[3]} onClick={() => enlarge(image[3])} />
+      <img src={image[4]} onClick={() => enlarge(image[4])} />
+      <img src={image[5]} onClick={() => enlarge(image[5])} />
+      {/* {popUp && (
+        <ImageModal image={largeImage[1]} triggerPopUp={triggerPopUp} />
+      )} // try maybe this way */}
+    </div>
   );
 };
 

@@ -21,6 +21,7 @@ function App() {
   const [storeInput, setStoreInput] = useState("");
   const [image, setImage] = useState("");
   const [favourites, setFavourites] = useState([]);
+  const [popUp, setPopUp] = useState(false);
 
   const handleClick = () => {
     setStoreInput(userInputRef.current.value);
@@ -41,6 +42,10 @@ function App() {
           // can make use of tags from output.hits[1].tags (tags here is an array)
         });
     }
+  };
+
+  const triggerPopUp = () => {
+    setPopUp(!popUp);
   };
 
   return (
@@ -65,14 +70,11 @@ function App() {
               />
             }
           />
-          <Route
-            path="/animals"
-            element={<AnimalsPage />}
-          />
+          <Route path="/animals" element={<AnimalsPage popUp={popUp} setPopUp={setPopUp} triggerPopUp={triggerPopUp}/>} />
           {/* // why <Animals/> component can still access useContext? */}
           <Route path="/favourites" element={<FavouritesPage />} />
-          <Route path="/furniture" element={<FurniturePage />} />
-          <Route path="/flowers" element={<FlowersPage />} />
+          <Route path="/furniture" element={<FurniturePage popUp={popUp} setPopUp={setPopUp} triggerPopUp={triggerPopUp}/>} />
+          <Route path="/flowers" element={<FlowersPage popUp={popUp} setPopUp={setPopUp} triggerPopUp={triggerPopUp}/>} />
         </Routes>
       </SomeContext.Provider>
     </Router>
