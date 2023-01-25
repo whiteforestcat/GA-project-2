@@ -20,7 +20,8 @@ import FlowersPage from "./Pages/FlowersPage";
 function App() {
   const userInputRef = useRef();
   const [storeInput, setStoreInput] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState([]);
+  const [searchImage, setSearchImage] = useState([]);
   const [favourites, setFavourites] = useState([]);
   const [popUp, setPopUp] = useState(false);
 
@@ -39,7 +40,15 @@ function App() {
         .then((response) => response.json())
         .then((output) => {
           console.log(output);
-          setImage(output.hits[1].previewURL); // change array index here for various images
+          setImage([
+            ...image,
+            output.hits[0].largeImageURL,
+            output.hits[1].largeImageURL,
+            output.hits[2].largeImageURL,
+            output.hits[3].largeImageURL,
+            output.hits[4].largeImageURL,
+            output.hits[5].largeImageURL,
+          ]); // change array index here for various images
           // can make use of tags from output.hits[1].tags (tags here is an array)
         });
     }
@@ -51,7 +60,7 @@ function App() {
 
   return (
     <Router>
-      <NavBar/>
+      <NavBar />
       <SomeContext.Provider value={{ favourites, setFavourites }}>
         {false && <Favourites />}
         <Favourites />
@@ -69,14 +78,44 @@ function App() {
                 setImage={setImage}
                 handleClick={handleClick}
                 getData={getData}
+                popUp={popUp}
+                setPopUp={setPopUp}
+                triggerPopUp={triggerPopUp}
               />
             }
           />
-          <Route path="/animals" element={<AnimalsPage popUp={popUp} setPopUp={setPopUp} triggerPopUp={triggerPopUp}/>} />
+          <Route
+            path="/animals"
+            element={
+              <AnimalsPage
+                popUp={popUp}
+                setPopUp={setPopUp}
+                triggerPopUp={triggerPopUp}
+              />
+            }
+          />
           {/* // why <Animals/> component can still access useContext? */}
           <Route path="/favourites" element={<FavouritesPage />} />
-          <Route path="/furniture" element={<FurniturePage popUp={popUp} setPopUp={setPopUp} triggerPopUp={triggerPopUp}/>} />
-          <Route path="/flowers" element={<FlowersPage popUp={popUp} setPopUp={setPopUp} triggerPopUp={triggerPopUp}/>} />
+          <Route
+            path="/furniture"
+            element={
+              <FurniturePage
+                popUp={popUp}
+                setPopUp={setPopUp}
+                triggerPopUp={triggerPopUp}
+              />
+            }
+          />
+          <Route
+            path="/flowers"
+            element={
+              <FlowersPage
+                popUp={popUp}
+                setPopUp={setPopUp}
+                triggerPopUp={triggerPopUp}
+              />
+            }
+          />
         </Routes>
       </SomeContext.Provider>
     </Router>
