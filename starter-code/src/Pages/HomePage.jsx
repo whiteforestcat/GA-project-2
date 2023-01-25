@@ -24,7 +24,7 @@ const HomePage = (props) => {
         id="user-input"
         placeholder="Search Images"
       />
-      <button onClick={props.handleClick}>Enter</button>
+      <button onClick={props.handleClick}>Search</button>
       <br />
       <div className="gallery">
         {props.image.map((element, index) => (
