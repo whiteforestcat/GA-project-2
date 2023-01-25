@@ -1,0 +1,14 @@
+nav {
+  height: 100%;
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar {
+  height: 5rem;
+  background-color: red;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRef } from "react";
 import SomeContext from "./context/some-context";
 import Favourites from "./components/Favourites";
+import NavBar from "./components/NavBar";
 
 // Importing React routers
 import {
@@ -50,6 +51,7 @@ function App() {
 
   return (
     <Router>
+      <NavBar/>
       <SomeContext.Provider value={{ favourites, setFavourites }}>
         {false && <Favourites />}
         <Favourites />
