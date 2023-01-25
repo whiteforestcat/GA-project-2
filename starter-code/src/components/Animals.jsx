@@ -1,13 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
-import useFetch from "../hooks/useFetch";
 import Button from "./Button";
 import SomeContext from "../context/some-context";
-import ImageModal from "../modals/ImageModal";
 
 const Animals = (props) => {
   const [image, setImage] = useState([]);
-  const [largeImage, setLargeImage] = useState([]);
   const [store, setStore] = useState([]);
 
   const ctx = useContext(SomeContext);
@@ -31,16 +28,6 @@ const Animals = (props) => {
           output.hits[3].largeImageURL,
           output.hits[4].largeImageURL,
           output.hits[5].largeImageURL,
-        ]);
-
-        setLargeImage([
-          ...largeImage,
-          output.hits[0].largeImageURL,
-          output.hits[1].largeImageURL,
-          output.hits[2].largeImageURL,
-          output.hits[3].largeImageURL,
-          output.hits[4].largeImageURL,
-          output.hits[5].largeImageUR,
         ]);
       });
   };
@@ -80,13 +67,13 @@ const Animals = (props) => {
         image={image[1]}
       />
 
-      <img src={image[2]} onClick={() => enlarge(image[2])} />
-      <img src={image[3]} onClick={() => enlarge(image[3])} />
-      <img src={image[4]} onClick={() => enlarge(image[4])} />
-      <img src={image[5]} onClick={() => enlarge(image[5])} />
       {/* {popUp && (
         <ImageModal image={largeImage[1]} triggerPopUp={triggerPopUp} />
       )} // try maybe this way */}
+
+      {image.map((element, index) => (
+        <img src={element} key={index} onClick={() => enlarge(element)} />
+      ))}
     </div>
   );
 };
