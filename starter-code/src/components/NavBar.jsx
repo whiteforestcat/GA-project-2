@@ -4,20 +4,40 @@ import styles from "./NavBar.module.css";
 
 const NavBar = () => {
   return (
-    <header>
+    <header className={styles.navbar}>
       <nav>
-        <NavLink to="/" className={styles.navbar}>
+        <li>
+          <NavLink
+            to="/"
+            className={(navData) => (navData.isActive ? styles.active : "")}
+          >
             Home
-        </NavLink>
-        <NavLink to="/animals" className={styles.navbar}>
-          Animals
-        </NavLink>
-        <NavLink to="/flowers" className={styles.navbar}>
-          Flowers
-        </NavLink>
-        <NavLink to="/furniture" className={styles.navbar}>
-          Furniture
-        </NavLink>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/animals"
+            className={(navData) => (navData.isActive ? styles.active : "")}
+          >
+            Animals
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/flowers"
+            className={(navData) => (navData.isActive ? styles.active : "")}
+          >
+            Flowers
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/furniture"
+            className={(navData) => (navData.isActive ? styles.active : "")}
+          >
+            Furniture
+          </NavLink>
+        </li>
       </nav>
     </header>
   );
