@@ -70,7 +70,6 @@ body {
 .gallery img {
   max-width: 100%;
   height: auto;
-  background: red;
 }
 
 .card {
