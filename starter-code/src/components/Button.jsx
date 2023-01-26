@@ -7,7 +7,7 @@ const Button = (props) => {
 
   return (
     <>
-      <button onClick={handleClick}>Add to Favourites</button>
+      <button onClick={handleClick}>&#10084;</button>
     </>
   );
 };

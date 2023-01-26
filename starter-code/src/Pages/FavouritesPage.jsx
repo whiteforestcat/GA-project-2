@@ -1,15 +1,21 @@
-import React, { useContext } from 'react';
-import SomeContext from '../context/some-context';
+import React, { useContext } from "react";
+import SomeContext from "../context/some-context";
 
 const FavouritesPage = () => {
+  const ctx = useContext(SomeContext);
 
-    const ctx = useContext(SomeContext)
-
-    return (
-        <>
-            <img src={ctx.favourites} />
-        </>
-    );
+  return (
+    <div className="gallery">
+      <h2>Favourites</h2>
+      {console.log(ctx.favourites)}
+      <div className="card">
+        {ctx.favourites.map((element, id) => (
+          <img src={element} key={id} />
+        ))}
+        {/* <img src={ctx.favourites} /> */}
+      </div>
+    </div>
+  );
 };
 
 export default FavouritesPage;

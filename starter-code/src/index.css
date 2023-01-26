@@ -30,11 +30,6 @@ body {
   overflow: hidden;
 } */
 
-.gallery img{
-  max-width: 20%;
-  height: auto;
-}
-
 .model {
   width: 100%;
   height: 100vh;
@@ -70,3 +65,15 @@ body {
   padding: 20px 20px;
   margin: 0 auto;
 }
+
+.gallery img{
+  max-width: 100%;
+  height: auto;
+  
+}
+
+.card {
+  max-width: 20%;
+  height: auto;
+}
+

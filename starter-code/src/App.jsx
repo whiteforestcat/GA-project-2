@@ -34,14 +34,14 @@ function App() {
     if (storeInput) {
       const url =
         "https://pixabay.com/api/?key=32915227-7fee22a435d92b06b1ec8ed8f&q=" +
-        storeInput + // why cannot storeInput
+        storeInput +
         "&image_type=photo";
       fetch(url)
         .then((response) => response.json())
         .then((output) => {
           console.log(output);
           setImage([
-            ...image,
+            // ...image,  // remove this line to remove previous search
             output.hits[0].largeImageURL,
             output.hits[1].largeImageURL,
             output.hits[2].largeImageURL,
@@ -63,7 +63,7 @@ function App() {
       <NavBar />
       <SomeContext.Provider value={{ favourites, setFavourites }}>
         {false && <Favourites />}
-        <Favourites />
+        {/* <Favourites /> */}
         {/* // if i refresh page, favourites data is gone, how to store in memory? */}
 
         <Routes>
@@ -116,6 +116,7 @@ function App() {
               />
             }
           />
+          <Route path="/favourites" element={<Favourites/>}/>
         </Routes>
       </SomeContext.Provider>
     </Router>

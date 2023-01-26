@@ -38,6 +38,12 @@ const NavBar = () => {
             Furniture
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/favourites"
+            className={(navData) => (navData.isActive ? styles.active : "")}
+          >Favourites</NavLink>
+        </li>
       </nav>
     </header>
   );

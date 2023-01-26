@@ -1,19 +1,23 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import Button from "../components/Button";
+import SomeContext from "../context/some-context";
 
 const HomePage = (props) => {
-    const [store, setStore] = useState([]);
+  const [store, setStore] = useState([]);
+
+  const ctx = useContext(SomeContext);
 
   useEffect(() => {
     props.getData();
   }, [props.storeInput]);
 
   const enlarge = (source) => {
-    setStore(source)
-    props.setPopUp(!props.popUp)
-  } 
+    setStore(source);
+    props.setPopUp(!props.popUp);
+  };
 
   return (
-    <>
+    <div>
       <div className={props.popUp ? "model open" : "model"}>
         <img src={store} onClick={() => props.setPopUp(false)} />
       </div>
@@ -26,16 +30,21 @@ const HomePage = (props) => {
       />
       <button onClick={props.handleClick}>Search</button>
       <br />
-      <div className="gallery">
+      
         {props.image.map((element, index) => (
-          <img src={element} key={index} onClick={() => enlarge(element)} />
+          <div className="card" key={index}>
+            <img src={element} onClick={() => enlarge(element)} />
+            <Button
+              favourites={ctx.favourites}
+              setFavourites={ctx.setFavourites}
+              image={element}
+            />
+          </div>
         ))}
-      </div>
+    
 
       {/* <img src={props.image} /> */}
-      <br />
-      {props.storeInput && <button>Add to Favourites</button>}
-    </>
+    </div>
   );
 };
 

@@ -1,16 +1,13 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
-import useFetch from "../hooks/useFetch";
-import SomeContext from "../context/some-context";
 import Button from "./Button";
-import ImageModal from "../modals/ImageModal";
+import SomeContext from "../context/some-context";
 
 const Flowers = (props) => {
-
-  const ctx = useContext(SomeContext)
-
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState([]);
   const [store, setStore] = useState([]);
+
+  const ctx = useContext(SomeContext);
 
   const generateData = () => {
     const url =
@@ -39,11 +36,10 @@ const Flowers = (props) => {
     generateData();
   }, []);
 
-    const enlarge = (source) => {
-      setStore(source);
-      props.setPopUp(!props.popUp);
-    }; 
-
+  const enlarge = (source) => {
+    setStore(source);
+    props.setPopUp(!props.popUp);
+  };
 
   return (
     <div className="gallery">
@@ -51,24 +47,25 @@ const Flowers = (props) => {
       {/* {stateArray.map((element) => {
         <img src={element} />;
       })} */}
+
       <div className={props.popUp ? "model open" : "model"}>
         <img src={store} onClick={() => props.setPopUp(false)} />
       </div>
 
-      <div>
-        <img src={image[0]} onClick={() => enlarge(image[0])} />
-        <Button
-          favourites={ctx.favourites}
-          setFavourites={ctx.setFavourites}
-          image={image[0]}
-        />
+      <div className="card">
+        {image.map((element, index) => {
+          return (
+            <div key={index}>
+              <img src={element} onClick={() => enlarge(element)} />
+              <Button
+                favourites={ctx.favourites}
+                setFavourites={ctx.setFavourites}
+                image={element}
+              />
+            </div>
+          );
+        })}
       </div>
-
-      <img src={image[1]} onClick={() => enlarge(image[1])} />
-      <img src={image[2]} onClick={() => enlarge(image[2])} />
-      <img src={image[3]} onClick={() => enlarge(image[3])} />
-      <img src={image[4]} onClick={() => enlarge(image[4])} />
-      <img src={image[5]} onClick={() => enlarge(image[5])} />
     </div>
   );
 };

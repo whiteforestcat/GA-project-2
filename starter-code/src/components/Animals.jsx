@@ -12,7 +12,7 @@ const Animals = (props) => {
   const generateData = () => {
     const url =
       "https://pixabay.com/api/?key=32915227-7fee22a435d92b06b1ec8ed8f&q=" +
-      "animal" +
+      "animals" +
       "&image_type=photo";
     fetch(url)
       .then((response) => response.json())
@@ -36,11 +36,10 @@ const Animals = (props) => {
     generateData();
   }, []);
 
-
   const enlarge = (source) => {
-    setStore(source)
-    props.setPopUp(!props.popUp)
-  } 
+    setStore(source);
+    props.setPopUp(!props.popUp);
+  };
 
   return (
     <div className="gallery">
@@ -53,27 +52,20 @@ const Animals = (props) => {
         <img src={store} onClick={() => props.setPopUp(false)} />
       </div>
 
-      <img src={image[0]} onClick={() => enlarge(image[0])} />
-      <Button
-        favourites={ctx.favourites}
-        setFavourites={ctx.setFavourites}
-        image={image[0]}
-      />
-
-      <img src={image[1]} onClick={() => enlarge(image[1])} />
-      <Button
-        favourites={ctx.favourites}
-        setFavourites={ctx.setFavourites}
-        image={image[1]}
-      />
-
-      {/* {popUp && (
-        <ImageModal image={largeImage[1]} triggerPopUp={triggerPopUp} />
-      )} // try maybe this way */}
-
-      {image.map((element, index) => (
-        <img src={element} key={index} onClick={() => enlarge(element)} />
-      ))}
+      <div className="card">
+        {image.map((element, index) => {
+          return (
+            <div key={index}>
+              <img src={element} onClick={() => enlarge(element)} />
+              <Button
+                favourites={ctx.favourites}
+                setFavourites={ctx.setFavourites}
+                image={element}
+              />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
