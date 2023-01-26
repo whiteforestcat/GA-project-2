@@ -51,7 +51,9 @@ const Animals = (props) => {
       <div className={props.popUp ? "model open" : "model"}>
         <img src={store} onClick={() => props.setPopUp(false)} />
       </div>
-
+      <div>
+        
+      </div>
       <div className="card">
         {image.map((element, index) => {
           return (
