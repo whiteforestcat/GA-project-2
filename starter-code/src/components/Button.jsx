@@ -4,7 +4,7 @@ const Button = (props) => {
   const [heartCheck, setHeartCheck] = useState(false);
   const handleClick = () => {
     props.setFavourites([...props.favourites, props.image]);
-    setHeartCheck(true)
+    setHeartCheck(!heartCheck)
   };
 
   return (

@@ -21,8 +21,7 @@ function App() {
   const userInputRef = useRef();
   const [storeInput, setStoreInput] = useState("");
   const [image, setImage] = useState([]);
-  const [searchImage, setSearchImage] = useState([]);
-  const [favourites, setFavourites] = useState([]);
+  const [favourites, setFavourites] = useState("");
   const [popUp, setPopUp] = useState(false);
 
   const handleClick = () => {
