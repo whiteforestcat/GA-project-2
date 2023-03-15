@@ -122,3 +122,6 @@ yarn-debug.log*
 .idea/
 .vscode/
 *.code-workspace
+
+# Local Netlify folder
+.netlify
